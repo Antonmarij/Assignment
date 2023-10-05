@@ -98,9 +98,14 @@ internal class MenuService : IMenuService
         Console.WriteLine("All contacts");
         Console.WriteLine("----------------------------------------------------");
 
-        foreach(var contact in _contactService.GetContacts())
+        foreach (var contact in _contactService.GetContacts())
             Console.WriteLine($"{contact.FirstName} {contact.LastName} <{contact.Email}> {contact.Address} {contact.PhoneNumber}");
 
         Console.ReadKey();
+    }
+
+    public void ListSpecificMenu()
+    {
+        throw new NotImplementedException();
     }
 }
