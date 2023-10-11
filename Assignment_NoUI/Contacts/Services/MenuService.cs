@@ -1,22 +1,11 @@
 ﻿using Contacts.Interfaces;
 using Contacts.Models;
+using System.Diagnostics.Metrics;
 
 namespace Contacts.Services;
-
-
-
-internal interface IMenuService
+public class MenuService 
 {
-    public void MainMenu();
-    public void CreateMenu();
-    public void ListAllMenu();
-    public void ListSpecificMenu();
-
-}
-
-internal class MenuService : IMenuService
-{
-    private readonly IContactService _contactService = new ContactService();
+    private static readonly IContactService contactService = new ContactService();
 
 
     public void MainMenu()
@@ -29,6 +18,7 @@ internal class MenuService : IMenuService
             Console.WriteLine("1. Create new contact.");
             Console.WriteLine("2. Show a contact");
             Console.WriteLine("3. Show all contacts");
+            Console.WriteLine("4. Remove a contact");
             Console.WriteLine("0. Exit Menu");
             Console.Write("Choose one of the above options: ");
             var option = Console.ReadLine();
@@ -36,15 +26,19 @@ internal class MenuService : IMenuService
             switch (option)
             {
                 case "1":
-                    CreateMenu();
+                    CreateContactMenu();
                     break;
 
                 case "2":
-                    ListSpecificMenu();
+                    GetSpecificContactMenu();
                     break;
 
                 case "3":
-                    ListAllMenu();
+                    GetAllContactsMenu();
+                    break;
+
+                case "4":
+                    DeleteContactMenu();
                     break;
 
                 case "0":
@@ -60,52 +54,69 @@ internal class MenuService : IMenuService
     }
 
 
-    public void CreateMenu()
+    public void CreateContactMenu()
     {
-        Console.Clear();
-        Console.WriteLine("Create a new contact");
-        Console.WriteLine("---------------------");
+        IContact contact = new Contact();
 
-        var contact = new ContactCreateRequest();
-
-        Console.Write("First name: ");
-        contact.FirstName = Console.ReadLine()!.Trim();
-
-        Console.Write("Last name: ");
-        contact.LastName = Console.ReadLine()!.Trim();
-
+        Console.Write("First Name: ");
+            contact.FirstName = Console.ReadLine();
+        Console.Write("Last Name: ");
+            contact.LastName = Console.ReadLine();
         Console.Write("Email: ");
-        contact.Email = Console.ReadLine()!.Trim().ToLower();
+            contact.Email = Console.ReadLine();
+        Console.Write("Phone Number: ");
+            contact.PhoneNumber = Console.ReadLine();
 
-        Console.Write("Address: ");
-        contact.Address = Console.ReadLine()!.Trim();
+        contact.Address = new Address();
 
-        Console.Write("PhoneNumber: ");
-        contact.PhoneNumber = Console.ReadLine()!.Trim();
+        Console.Write("Street Name: ");
+            contact.Address.StreetName = Console.ReadLine();
+        Console.Write("Street Number: ");
+            contact.Address.StreetNumber = Console.ReadLine();
+        Console.Write("Postal Code: ");
+            contact.Address.PostalCode = Console.ReadLine();
+        Console.Write("City");
+            contact.Address.City = Console.ReadLine();
 
-        Console.Write("Passowrd: ");
-        contact.Password = Console.ReadLine()!.Trim();
-
-        _contactService.CreateContact(contact);
-        Console.WriteLine("A new contact has been created!");
-        Console.ReadKey();
+        Task.Run(() => contactService.CreateContactAsync(contact));
 
     }
 
-    public void ListAllMenu()
+    public void GetAllContactsMenu()
     {
+        //simpel foreach loop, listar upp alla kontakter som finns i IEnumerable listan
         Console.Clear();
         Console.WriteLine("All contacts");
+        Console.WriteLine("First Name - Last Name - Email - Address - Phone Number");
         Console.WriteLine("----------------------------------------------------");
 
-        foreach (var contact in _contactService.GetContacts())
-            Console.WriteLine($"{contact.FirstName} {contact.LastName} <{contact.Email}> {contact.Address} {contact.PhoneNumber}");
+        foreach (var contact in contactService.GetContacts())
+        {
+            Console.WriteLine(contact.FullName);
+            Console.WriteLine(contact.Address.FullAddress);
+        }
 
         Console.ReadKey();
     }
 
-    public void ListSpecificMenu()
+    public void GetSpecificContactMenu()
     {
-        throw new NotImplementedException();
+        Console.Write("Email: ");
+        var email = Console.ReadLine();
+
+        var contact = contactService.GetContact(email!);
+
+        Console.WriteLine(contact.FullName);
+        Console.WriteLine(contact.Email);
+        Console.WriteLine(contact.PhoneNumber);
+        Console.WriteLine(contact.Address.FullAddress);
+    }
+
+    public void DeleteContactMenu()
+    {
+        Console.Write("Email: ");
+        var email = Console.ReadLine();
+
+        contactService.DeleteContact(email!);
     }
 }

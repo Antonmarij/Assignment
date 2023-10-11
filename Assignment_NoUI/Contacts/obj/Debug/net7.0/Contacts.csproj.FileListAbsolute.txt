@@ -1,0 +1,14 @@
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.AssemblyInfoInputs.cache
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.AssemblyInfo.cs
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.csproj.CoreCompileInputs.cache
+C:\Assignment\Assignment_NoUI\Contacts\bin\Debug\net7.0\Contacts.exe
+C:\Assignment\Assignment_NoUI\Contacts\bin\Debug\net7.0\Contacts.deps.json
+C:\Assignment\Assignment_NoUI\Contacts\bin\Debug\net7.0\Contacts.runtimeconfig.json
+C:\Assignment\Assignment_NoUI\Contacts\bin\Debug\net7.0\Contacts.dll
+C:\Assignment\Assignment_NoUI\Contacts\bin\Debug\net7.0\Contacts.pdb
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.dll
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\refint\Contacts.dll
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.pdb
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.genruntimeconfig.cache
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\ref\Contacts.dll
