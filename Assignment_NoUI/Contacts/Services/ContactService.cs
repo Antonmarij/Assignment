@@ -5,15 +5,14 @@ namespace Contacts.Services;
 
 public class ContactService : IContactService
 {
+    //jag gör en lista som jag lägger till kontakterna i, instansierar listan.
     private List<IContact> _contacts = new List<IContact>();
-    //fixa json later asap
-    //private readonly string _filePath = @"c:\Code\contacts.json";
 
 
-    public async Task CreateContactAsync(IContact contact)
+
+    public void CreateContact(IContact contact)
     {
         _contacts.Add(contact);
-        await FileService.SaveToFileAsync(_filePath, "");
     }
 
     public IEnumerable<IContact> GetContacts()

@@ -8,7 +8,7 @@ public class MenuService
     private static readonly IContactService contactService = new ContactService();
 
 
-    public void MainMenu()
+    public static void MainMenu()
     {
         var exit = false;
 
@@ -54,7 +54,7 @@ public class MenuService
     }
 
 
-    public void CreateContactMenu()
+    public static void CreateContactMenu()
     {
         IContact contact = new Contact();
 
@@ -68,38 +68,34 @@ public class MenuService
             contact.PhoneNumber = Console.ReadLine();
 
         contact.Address = new Address();
-
         Console.Write("Street Name: ");
-            contact.Address.StreetName = Console.ReadLine();
-        Console.Write("Street Number: ");
-            contact.Address.StreetNumber = Console.ReadLine();
+            contact.Address.Street = Console.ReadLine();
         Console.Write("Postal Code: ");
             contact.Address.PostalCode = Console.ReadLine();
         Console.Write("City");
             contact.Address.City = Console.ReadLine();
 
-        Task.Run(() => contactService.CreateContactAsync(contact));
+        contactService.CreateContact(contact);
 
     }
 
-    public void GetAllContactsMenu()
+    public static void GetAllContactsMenu()
     {
         //simpel foreach loop, listar upp alla kontakter som finns i IEnumerable listan
         Console.Clear();
         Console.WriteLine("All contacts");
         Console.WriteLine("First Name - Last Name - Email - Address - Phone Number");
         Console.WriteLine("----------------------------------------------------");
-
+        //frågetecken i interface/models så har jag frågetecken här också.
         foreach (var contact in contactService.GetContacts())
         {
             Console.WriteLine(contact.FullName);
-            Console.WriteLine(contact.Address.FullAddress);
+            Console.WriteLine(contact.Address?.FullAddress);
         }
 
-        Console.ReadKey();
     }
 
-    public void GetSpecificContactMenu()
+    public static void GetSpecificContactMenu()
     {
         Console.Write("Email: ");
         var email = Console.ReadLine();
@@ -109,10 +105,10 @@ public class MenuService
         Console.WriteLine(contact.FullName);
         Console.WriteLine(contact.Email);
         Console.WriteLine(contact.PhoneNumber);
-        Console.WriteLine(contact.Address.FullAddress);
+        Console.WriteLine(contact.Address?.FullAddress);
     }
 
-    public void DeleteContactMenu()
+    public static void DeleteContactMenu()
     {
         Console.Write("Email: ");
         var email = Console.ReadLine();

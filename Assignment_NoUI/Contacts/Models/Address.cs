@@ -1,11 +1,12 @@
-﻿namespace Contacts.Models;
+﻿using Contacts.Interfaces;
 
-public class Address
+namespace Contacts.Models;
+
+public class Address : IAddress
 {
-    public string? StreetName { get; set; }
-    public string? StreetNumber { get; set; }
+    public string? Street { get; set; }
     public string? PostalCode { get; set; }
     public string? City { get; set; }
 
-    public string FullAddress => $"{StreetName} {StreetNumber}\n{PostalCode} {City}";
+    public string? FullAddress => $"{Street}\n{PostalCode} {City}";
 }
