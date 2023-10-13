@@ -11,7 +11,7 @@ public class MenuService
     public static async Task MainMenuAsync()
     {
         var exit = false;
-
+        //do while loop i main menyn med switchcase, enkel navigering mellan menyerna med switch.
         do
         {
             Console.Clear();
@@ -27,6 +27,7 @@ public class MenuService
             
             switch(option)
             {
+                //await/async exempel, mer användbart i större projekt. har kvar ändå.
                 case "1":
                     await CreateContactMenuAsync();
                     break;
@@ -57,14 +58,14 @@ public class MenuService
         while (exit == false);
     }
 
-
+    //await/async exempel, mer användbart i större projekt. har kvar ändå. Kunda lika gärna varit public static void CreateContactMenu().
     public static async Task CreateContactMenuAsync()
     {
 
         IContact contact = new Contact();
 
         Console.Clear();
-
+        //skapar och sparar uppgfiterna till en kontakt i listan 
         Console.WriteLine("Fill in the contact details");
         Console.WriteLine("---------------------------");
         Console.Write("First Name: ");
@@ -108,7 +109,7 @@ public class MenuService
     public static void GetSpecificContactMenu()
     {
         Console.Clear();
-
+        //Listar upp en specifik kontakt om emailen existerar. ligger i trycatch så den inte kraschar om email inte finns.
         Console.WriteLine("Search for a specific contact");
         Console.WriteLine("-----------------------------");
         Console.Write("Email: ");
@@ -138,6 +139,7 @@ public class MenuService
 
     public static void DeleteContactMenu()
     {
+        //Tar bort kontakten om email stämmer överens med en kontakt i listan, funkar oavsett vad utan try catch? fråga hans
 
         Console.Clear();
         Console.WriteLine("Delete a contact");
@@ -145,7 +147,24 @@ public class MenuService
         Console.Write("Email: ");
         var email = Console.ReadLine();
 
-        contactService.DeleteContact(email!);
-        Console.WriteLine("Contact deleted!");
+        try
+        {
+            contactService.DeleteContact(email!);
+
+            if (email == null)
+            {
+                Console.WriteLine("Contact not found.");
+            }
+            else
+            {
+                Console.WriteLine("Contact deleted!");
+            }
+        }
+        catch(Exception)
+        {
+            Console.WriteLine("\"An error occured: Contact not found\"");
+        }
+
+
     }
 }

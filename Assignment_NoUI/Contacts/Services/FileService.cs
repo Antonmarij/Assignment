@@ -8,9 +8,4 @@ public class FileService
         await sw.WriteLineAsync(content);
     }
 
-    //public static string ReadFromFile(string filePath)
-    //{
-    //    using StreamReader sr = new StreamReader(filePath);
-    //    return sr.ReadToEndAsync();
-    //}
 } 
