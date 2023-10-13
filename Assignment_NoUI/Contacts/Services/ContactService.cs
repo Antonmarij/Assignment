@@ -7,12 +7,13 @@ public class ContactService : IContactService
 {
     //jag gör en lista som jag lägger till kontakterna i, instansierar listan.
     private List<IContact> _contacts = new List<IContact>();
+    private readonly string _filePath = @"c:\Assignment\Assignment_NoUI\contacts.json";
 
 
-
-    public void CreateContact(IContact contact)
+    public async Task CreateContactAsync(IContact contact)
     {
         _contacts.Add(contact);
+        await FileService.SaveToFileAsync(_filePath, "");
     }
 
     public IEnumerable<IContact> GetContacts()
