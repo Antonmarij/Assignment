@@ -16,7 +16,7 @@ public class ContactTests
         //Act
         contactService.CreateContact(contact);
 
-        //Assert
+        //Assert Dont need this part when its void, only works on bool
         //Assert.True(result);
     }
 }
