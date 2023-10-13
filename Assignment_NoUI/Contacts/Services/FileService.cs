@@ -2,10 +2,10 @@
 
 public class FileService
 {
-    public static async Task SaveToFileAsync(string filePath, string content)
+    public static void SaveToFile(string filePath, string content)
     {
         using StreamWriter sw = new StreamWriter(filePath);
-        await sw.WriteLineAsync(content);
+        sw.WriteLineAsync(content);
     }
 
 } 

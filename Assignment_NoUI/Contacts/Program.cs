@@ -2,4 +2,4 @@
 
 //var menuService = new MenuService();
 //menuService.MainMenu();
-await MenuService.MainMenuAsync();
+MenuService.MainMenu();

@@ -12,3 +12,6 @@ C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\refint\Contacts.dll
 C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.pdb
 C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.genruntimeconfig.cache
 C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\ref\Contacts.dll
+C:\Assignment\Assignment_NoUI\Contacts\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.csproj.AssemblyReference.cache
+C:\Assignment\Assignment_NoUI\Contacts\obj\Debug\net7.0\Contacts.csproj.CopyComplete

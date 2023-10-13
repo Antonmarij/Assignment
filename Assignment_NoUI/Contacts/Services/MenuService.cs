@@ -8,101 +8,112 @@ public class MenuService
     private static readonly IContactService contactService = new ContactService();
 
 
-    public static async Task MainMenuAsync()
+    public static void MainMenu()
     {
         var exit = false;
         //do while loop i main menyn med switchcase, enkel navigering mellan menyerna med switch.
-        do
+        try
         {
-            Console.Clear();
-            Console.WriteLine("1. Create new contact");
-            Console.WriteLine("2. Show a contact");
-            Console.WriteLine("3. Show all contacts");
-            Console.WriteLine("4. Delete a contact");
-            Console.WriteLine("0. Exit Menu");
-            Console.Write("Choose one of the above options: ");
-            var option = Console.ReadLine();
-
-            Console.Clear();
-            
-            switch(option)
+            do
             {
-                //await/async exempel, mer användbart i större projekt. har kvar ändå.
-                case "1":
-                    await CreateContactMenuAsync();
-                    break;
+                Console.Clear();
+                Console.WriteLine("1. Create new contact");
+                Console.WriteLine("2. Show a contact");
+                Console.WriteLine("3. Show all contacts");
+                Console.WriteLine("4. Delete a contact");
+                Console.WriteLine("0. Exit Menu");
+                Console.Write("Choose one of the above options: ");
+                var option = Console.ReadLine();
 
-                case "2":
-                    GetSpecificContactMenu();
-                    break;
+                Console.Clear();
 
-                case "3":
-                    GetAllContactsMenu();
-                    break;
+                switch (option)
+                {
+                    //await/async exempel, mer användbart i större projekt. har kvar ändå.
+                    case "1":
+                        CreateContactMenu();
+                        break;
 
-                case "4":
-                    DeleteContactMenu();
-                    break;
+                    case "2":
+                        GetSpecificContactMenu();
+                        break;
 
-                case "0":
-                    exit = true;
-                    break;
+                    case "3":
+                        GetAllContactsMenu();
+                        break;
 
-                default:
-                    Console.WriteLine("Choose one of the contact options or exit option!");
-                    break;
+                    case "4":
+                        DeleteContactMenu();
+                        break;
+
+                    case "0":
+                        exit = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Choose one of the contact options or exit option!");
+                        break;
+                }
+
+                Console.ReadKey();
             }
-
-            Console.ReadKey();
-        }   
-        while (exit == false);
+            while (exit == false);
+        }
+        catch { }
     }
 
     //await/async exempel, mer användbart i större projekt. har kvar ändå. Kunda lika gärna varit public static void CreateContactMenu().
-    public static async Task CreateContactMenuAsync()
+    public static void CreateContactMenu()
     {
 
         IContact contact = new Contact();
-
-        Console.Clear();
-        //skapar och sparar uppgfiterna till en kontakt i listan 
-        Console.WriteLine("Fill in the contact details");
-        Console.WriteLine("---------------------------");
-        Console.Write("First Name: ");
+        try
+        {
+            Console.Clear();
+            //skapar och sparar uppgfiterna till en kontakt i listan 
+            Console.WriteLine("Fill in the contact details");
+            Console.WriteLine("---------------------------");
+            Console.Write("First Name: ");
             contact.FirstName = Console.ReadLine();
-        Console.Write("Last Name: ");
+            Console.Write("Last Name: ");
             contact.LastName = Console.ReadLine();
-        Console.Write("Email: ");
+            Console.Write("Email: ");
             contact.Email = Console.ReadLine();
-        Console.Write("Phone Number: ");
+            Console.Write("Phone Number: ");
             contact.PhoneNumber = Console.ReadLine();
 
-        contact.Address = new Address();
-        Console.Write("Street Name: ");
+            contact.Address = new Address();
+            Console.Write("Street Name: ");
             contact.Address.Street = Console.ReadLine();
-        Console.Write("Postal Code: ");
+            Console.Write("Postal Code: ");
             contact.Address.PostalCode = Console.ReadLine();
-        Console.Write("City: ");
+            Console.Write("City: ");
             contact.Address.City = Console.ReadLine();
-        Console.WriteLine("Contact added!");
+            Console.WriteLine("Contact added!");
 
-        await contactService.CreateContactAsync(contact);
+            contactService.CreateContact(contact);
+        }
+        catch { }
 
     }
 
     public static void GetAllContactsMenu()
     {
-        //simpel foreach loop, listar upp alla kontakter som finns i IEnumerable listan
-        Console.Clear();
-        Console.WriteLine("All contacts");
-        Console.WriteLine("----------------------------------------------------");
-        //frågetecken i interface/models så har jag frågetecken här också.
-        foreach (var contact in contactService.GetContacts())
+        try
         {
-            Console.WriteLine(contact.FullName);
-            Console.WriteLine(contact.Address?.FullAddress);
-            Console.WriteLine("---------------------------");
+            //simpel foreach loop, listar upp alla kontakter som finns i IEnumerable listan
+            Console.Clear();
+            Console.WriteLine("All contacts");
+            Console.WriteLine("----------------------------------------------------");
+            //frågetecken i interface/models så har jag frågetecken här också.
+            foreach (var contact in contactService.GetContacts())
+            {
+                Console.WriteLine(contact.FullName);
+                Console.WriteLine(contact.Address?.FullAddress);
+                Console.WriteLine("---------------------------");
+            }
         }
+        catch { }
 
     }
 
