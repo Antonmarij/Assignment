@@ -1,22 +1,23 @@
 ﻿using Contacts.Models;
 using Contacts.Services;
 using Moq;
+using Contacts.Interfaces;
 
 namespace Tests;
 
 public class ContactTests
 {
     [Fact]
-    public void CreateContact_ShouldAddContactToList_ReturnTrue()
+    public void CreateContact_ShouldAddContactToList_ContainContact()
     {
-        //Arrange
+        //Arrange förbered
         ContactService contactService = new ContactService();
         Contact contact = new Contact();
 
-        //Act
+        //Act gör
         contactService.CreateContact(contact);
 
-        //Assert Dont need this part when its void, only works on bool
-        //Assert.True(result);
+        //Assert kollar resultat
+        Assert.Contains(contact, contactService.GetContacts());
     }
 }

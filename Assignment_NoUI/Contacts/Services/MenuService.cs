@@ -29,7 +29,7 @@ public class MenuService
 
                 switch (option)
                 {
-                    //await/async exempel, mer användbart i större projekt. har kvar ändå.
+                    
                     case "1":
                         CreateContactMenu();
                         break;
@@ -62,7 +62,7 @@ public class MenuService
         catch { }
     }
 
-    //await/async exempel, mer användbart i större projekt. har kvar ändå. Kunda lika gärna varit public static void CreateContactMenu().
+    //menyn där man skapar kontakten, läser och sparar inputen från användaren
     public static void CreateContactMenu()
     {
 
