@@ -1,5 +1,6 @@
 ﻿using Contacts.Interfaces;
 using Contacts.Models;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
 namespace Contacts.Services;
@@ -59,7 +60,10 @@ public class MenuService
             }
             while (exit == false);
         }
-        catch { }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
     }
 
     //menyn där man skapar kontakten, läser och sparar inputen från användaren
@@ -93,7 +97,10 @@ public class MenuService
 
             contactService.CreateContact(contact);
         }
-        catch { }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
 
     }
 
@@ -113,7 +120,10 @@ public class MenuService
                 Console.WriteLine("---------------------------");
             }
         }
-        catch { }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
 
     }
 
@@ -130,7 +140,7 @@ public class MenuService
         {
             var contact = contactService.GetContact(email!);
 
-            if(contact == null)
+            if (contact == null)
             {
                 Console.WriteLine("Contact not found.");
             }
@@ -140,12 +150,13 @@ public class MenuService
                 Console.WriteLine(contact.Email);
                 Console.WriteLine(contact.PhoneNumber);
                 Console.WriteLine(contact.Address?.FullAddress);
-            } 
+            }
         }
-        catch (Exception)
+        catch (Exception ex) 
         {
-            Console.WriteLine("An error occured: Contact not found");
+            Debug.WriteLine(ex.Message);
         }
+
     }
 
     public static void DeleteContactMenu()
@@ -171,9 +182,9 @@ public class MenuService
                 Console.WriteLine("Contact deleted!");
             }
         }
-        catch(Exception)
+        catch (Exception ex)
         {
-            Console.WriteLine("\"An error occured: Contact not found\"");
+            Debug.WriteLine(ex.Message);
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using Contacts.Interfaces;
 using Contacts.Models;
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace Contacts.Services;
@@ -12,18 +13,20 @@ public class ContactService : IContactService
 
 
 
-    ////await/async exempel, mer användbart i större projekt. har kvar ändå. kunde varit void ingen skillnad i detta projekt.
+    
     public void CreateContact(IContact contact)
     {
         try
         {
             _contacts.Add(contact);
-            //skriver över alla kontakter som finns, fråga hans
             var jsonData = JsonSerializer.Serialize(_contacts);
 
             FileService.SaveToFile(_filePath, jsonData);
         }
-        catch { }
+        catch(Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
        
     }
     //returnerar alla kontakterna från listan
@@ -46,7 +49,10 @@ public class ContactService : IContactService
             var contact = GetContact(email);
             _contacts.Remove(contact);
         }
-        catch { }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
 
     }
 }
