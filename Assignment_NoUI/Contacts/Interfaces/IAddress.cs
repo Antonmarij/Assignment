@@ -2,10 +2,9 @@
 
 public interface IAddress
 {
-    
-    string? City { get; set; }
+    string? Street { get; set; }
     string? PostalCode { get; set; }
-    string? Street { get; set; } 
+    string? City { get; set; }
     string? FullAddress { get; }
 
 }

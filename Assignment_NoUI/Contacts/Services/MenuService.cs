@@ -6,6 +6,7 @@ using System.Diagnostics.Metrics;
 namespace Contacts.Services;
 public class MenuService 
 {
+    //instansierar ContactService. Kallas för dependency injection och gör att jag kan använda mig utav saker utifrån klassen istället för att behöva skriva om dom här.
     private static readonly IContactService contactService = new ContactService();
 
 
@@ -49,6 +50,7 @@ public class MenuService
 
                     case "0":
                         exit = true;
+                        Environment.Exit(0);
                         break;
 
                     default:
@@ -74,7 +76,7 @@ public class MenuService
         try
         {
             Console.Clear();
-            //skapar och sparar uppgfiterna till en kontakt i listan 
+            //läser in och sparar uppgfiterna till en kontakt i listan 
             Console.WriteLine("Fill in the contact details");
             Console.WriteLine("---------------------------");
             Console.Write("First Name: ");
@@ -173,14 +175,6 @@ public class MenuService
         {
             contactService.DeleteContact(email!);
 
-            if (email == null)
-            {
-                Console.WriteLine("Contact not found.");
-            }
-            else
-            {
-                Console.WriteLine("Contact deleted!");
-            }
         }
         catch (Exception ex)
         {

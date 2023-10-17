@@ -7,6 +7,7 @@ namespace Tests;
 
 public class ContactTests
 {
+    //[Fact] gör det till en test metod
     [Fact]
     public void CreateContact_ShouldAddContactToList_ContainContact()
     {

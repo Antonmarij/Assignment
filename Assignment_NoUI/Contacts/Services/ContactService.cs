@@ -8,6 +8,7 @@ namespace Contacts.Services;
 public class ContactService : IContactService
 {
     //jag gör en lista som jag lägger till kontakterna i, instansierar listan.
+    //listan kan bara innehålla data som IContact har definierat
     private List<IContact> _contacts = new List<IContact>();
     private readonly string _filePath = @"c:\Assignment\Assignment_NoUI\contacts.json";
 
@@ -35,10 +36,10 @@ public class ContactService : IContactService
         //try catch funkar ej här blir rött uppe
         return _contacts;
     }
-    //matchar email med en email i listan och returnerar den kontakten
+
     public IContact GetContact(string email)
     {
-
+        //går igenom listan av kontakterna och försöker matcha en existerande email med användarens input
         return _contacts.FirstOrDefault(x => x.Email == email)!;
     }
     //borde matcha email och ta bort kontakten med den emailen men "tar bort" oavsett vad? fråga hans
@@ -47,7 +48,15 @@ public class ContactService : IContactService
         try
         {
             var contact = GetContact(email);
-            _contacts.Remove(contact);
+            if (contact != null)
+            {
+                _contacts.Remove(contact);
+                Console.WriteLine("Contact deleted!");
+            }
+            else
+            {
+                    Console.WriteLine("Contact not found.");
+            }
         }
         catch (Exception ex)
         {
