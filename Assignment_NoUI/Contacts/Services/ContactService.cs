@@ -33,7 +33,12 @@ public class ContactService : IContactService
     //returnerar alla kontakterna från listan
     public IEnumerable<IContact> GetContacts()
     {
-        //try catch funkar ej här blir rött uppe
+        var contacts = FileService.ReadFromFile(_filePath);
+        if (!string.IsNullOrEmpty(contacts))
+        {
+            _contacts = JsonSerializer.Deserialize<List<IContact>>(contacts)!;
+        }
+        
         return _contacts;
     }
 

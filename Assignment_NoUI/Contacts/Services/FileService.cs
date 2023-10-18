@@ -7,7 +7,16 @@ public class FileService
     {
         //streamwriter append är true, vilket gör att contentet blir tillagt i slutet av filen.
         using StreamWriter sw = new StreamWriter(filePath, true);
-        sw.WriteLineAsync(content);
+        sw.WriteLine(content);
+    }
+
+    public static string ReadFromFile(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            return File.ReadAllText(filePath);
+        }
+        return null!;
     }
 
 } 
