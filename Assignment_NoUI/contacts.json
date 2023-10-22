@@ -1,4 +1,1 @@
-[{"Address":null,"Email":null,"FirstName":null,"LastName":null,"PhoneNumber":null,"FullName":" "}]
-[{"Address":{"City":"hyph","PostalCode":"hyph","Street":"hyph","FullAddress":"hyph\nhyph hyph"},"Email":"hyph@gmail.com","FirstName":"hyph","LastName":"hyph","PhoneNumber":"123","FullName":"hyph hyph"}]
-[{"Address":{"City":"miracle","PostalCode":"miracle","Street":"miracle","FullAddress":"miracle\nmiracle miracle"},"Email":"miracle","FirstName":"miracle","LastName":"miracle","PhoneNumber":"miracle","FullName":"miracle miracle"}]
-[{"Address":{"City":"asd","PostalCode":"asd","Street":"asd","FullAddress":"asd\nasd asd"},"Email":"ha@gmail.com","FirstName":"ha","LastName":"ha","PhoneNumber":"das","FullName":"ha ha"}]
+[{"Address":{"Street":"Oxelvägen 34","PostalCode":"138 31","City":"Älta","FullAddress":"Oxelvägen 34\n138 31 Älta"},"Email":"anton@domain.com","FirstName":"Anton","LastName":"Marijanovic","PhoneNumber":"12343","FullName":"Anton Marijanovic"}]

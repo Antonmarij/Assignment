@@ -14,7 +14,8 @@ public class FileService
     {
         if (File.Exists(filePath))
         {
-            return File.ReadAllText(filePath);
+            using var sr = new StreamReader(filePath);
+            return sr.ReadToEnd();
         }
         return null!;
     }

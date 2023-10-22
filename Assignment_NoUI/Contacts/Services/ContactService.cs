@@ -1,7 +1,8 @@
 ﻿using Contacts.Interfaces;
 using Contacts.Models;
+using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Text.Json;
+
 
 namespace Contacts.Services;
 
@@ -20,7 +21,7 @@ public class ContactService : IContactService
         try
         {
             _contacts.Add(contact);
-            var jsonData = JsonSerializer.Serialize(_contacts);
+            var jsonData = JsonConvert.SerializeObject(_contacts);
 
             FileService.SaveToFile(_filePath, jsonData);
         }
@@ -36,7 +37,11 @@ public class ContactService : IContactService
         var contacts = FileService.ReadFromFile(_filePath);
         if (!string.IsNullOrEmpty(contacts))
         {
-            _contacts = JsonSerializer.Deserialize<List<IContact>>(contacts)!;
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            };
+            _contacts = JsonConvert.DeserializeObject<List<IContact>>(contacts, settings)!;
         }
         
         return _contacts;
